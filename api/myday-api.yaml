@@ -1,0 +1,100 @@
+openapi: 3.0.1
+info:
+  title: MyDay API
+  description: API description for the MyDay service
+  license:
+    name: The 2-Clause BSD License
+    url: https://opensource.org/licenses/BSD-2-Clause
+  version: 1.0.0
+servers:
+  - url: http://localhost:80
+security:
+  - basicAuth: []
+paths:
+  /new:
+    post:
+      summary: Create a new user
+      responses:
+        201:
+          description: User created
+        409:
+          description: User already exists
+  /rate:
+    post:
+      summary: Rate my day
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rating'
+      responses:
+        202:
+          description: Rating accepted
+        400:
+          description: Rating is not valid
+        404:
+          description: User does not exist
+  /ratings:
+    get:
+      summary: Get the last 15 ratings
+      responses:
+        200:
+          description: Last 15 ratings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ratings'
+        404:
+          description: User does not exist
+  /tags:
+    get:
+      summary: Get all tags
+      responses:
+        200:
+          description: All tags
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tags'
+        404:
+          description: User does not exist
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    feeling:
+      type: string
+      enum:
+        - Great
+        - Good
+        - Normal
+        - Bored
+        - Sad
+        - Angry
+    rating:
+      properties:
+        date:
+          type: string
+          format: date
+        description:
+          type: string
+        feeling:
+          $ref: '#/components/schemas/feeling'
+        tags:
+          $ref: '#/components/schemas/tags'
+      required:
+        - date
+        - feeling
+    ratings:
+      type: array
+      items:
+        $ref: '#/components/schemas/rating'
+    tag:
+      type: string
+      minLength: 1
+    tags:
+      type: array
+      items:
+        $ref: '#/components/schemas/tag'
