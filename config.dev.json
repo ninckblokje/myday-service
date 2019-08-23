@@ -1,0 +1,15 @@
+{
+  "ListenAddress": ":80",
+  "MongoDB": {
+    "Database": "MyDay",
+    "Password": "Dummy_123",
+    "URI": "mongodb://localhost:27017",
+    "Username": "root"
+  },
+  "UserConfigs": [
+    {
+      "Username": "Dummy",
+      "Password": "Dummy_123"
+    }
+  ]
+}
