@@ -51,7 +51,7 @@ type UserData struct {
 
 var (
 	client mongo.Client
-	config = Config{ListenAddress:":80"}
+	config = Config{ListenAddress:":8080"}
 	validFeelingsList = []string{"Angry", "Bored", "Great", "Good", "Normal", "Sad"}
 )
 
