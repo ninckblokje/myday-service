@@ -1,5 +1,5 @@
 {
-  "ListenAddress": ":80",
+  "ListenAddress": ":8080",
   "MongoDB": {
     "Database": "MyDay",
     "Password": "Dummy_123",
